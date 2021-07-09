@@ -1,0 +1,17 @@
+version: "3.8"
+
+service:
+    app:
+        container_name: vehicles_service
+        build: .
+        env_file:
+            - .env
+        depends_on:
+            - redis
+    redis:
+        image: redis:latest
+        restart: always
+        env_file:
+            - .env
+        ports:
+        - 6379:6379
